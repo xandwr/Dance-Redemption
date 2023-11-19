@@ -1,7 +1,43 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1700160446
-icon.svg::CompressedTexture2D::4272963795655917182::1699495681::1699495692::1::::<><>::
-::res://Art/::1700160552
-0x72_DungeonTilesetII_v1.6.png::CompressedTexture2D::978766391585201965::1683299461::1700160561::1::::<><>::
-AnimationSheet.png::CompressedTexture2D::2281440416835631591::1700160420::1700160561::1::::<><>::
-satyr-Sheet.png::CompressedTexture2D::1731032523481741499::1670288510::1700160561::1::::<><>::
+::res://::1700420259
+::res://art/::1700420259
+::res://art/characters/::1700416644
+::res://art/characters/spritesheets/::1700416648
+1 idle.png::CompressedTexture2D::2101737307460684451::1641714554::1700416648::1::::<><>::
+1 punch.png::CompressedTexture2D::5230609119425702938::1641716986::1700416648::1::::<><>::
+1 walk.png::CompressedTexture2D::8418676315660699933::1641715572::1700416647::1::::<><>::
+2 idle.png::CompressedTexture2D::6831421166003686746::1641717638::1700416647::1::::<><>::
+2 punch.png::CompressedTexture2D::3581949768797246378::1642127186::1700416648::1::::<><>::
+2 walk.png::CompressedTexture2D::4945929678943443839::1641775974::1700416648::1::::<><>::
+3 idle.png::CompressedTexture2D::7820839977061104139::1642207030::1700416645::1::::<><>::
+3 punch.png::CompressedTexture2D::1656799302679845014::1642207088::1700416645::1::::<><>::
+3 walk.png::CompressedTexture2D::3884189346593854931::1642207006::1700416645::1::::<><>::
+4 idle.png::CompressedTexture2D::5468723682664478458::1642273268::1700416645::1::::<><>::
+4 punch.png::CompressedTexture2D::7979581238982567509::1642392498::1700416645::1::::<><>::
+4 walk.png::CompressedTexture2D::2518066458327959604::1642273716::1700416645::1::::<><>::
+5 idle.png::CompressedTexture2D::5239388220776321742::1642561160::1700416645::1::::<><>::
+5 punch.png::CompressedTexture2D::8746899888751257349::1642562060::1700416645::1::::<><>::
+5 walk.png::CompressedTexture2D::5947589890559184605::1642561750::1700416645::1::::<><>::
+6 idle.png::CompressedTexture2D::335986018662320621::1642634548::1700416645::1::::<><>::
+6 punch.png::CompressedTexture2D::1657048919833918617::1642636274::1700416645::1::::<><>::
+6 walk.png::CompressedTexture2D::4810385943960918912::1642635486::1700416645::1::::<><>::
+7 idle.png::CompressedTexture2D::8132858336589093993::1642724752::1700416645::1::::<><>::
+7 punch.png::CompressedTexture2D::5268609206414922655::1642726106::1700416645::1::::<><>::
+7 walk.png::CompressedTexture2D::2650935666582886591::1642725282::1700416645::1::::<><>::
+8 idle.png::CompressedTexture2D::7027543491434652397::1642727322::1700416645::1::::<><>::
+8 punch.png::CompressedTexture2D::4828621728979303116::1642728890::1700416645::1::::<><>::
+8 walk.png::CompressedTexture2D::2925669175446387575::1642728234::1700416645::1::::<><>::
+9 idle.png::CompressedTexture2D::8593179197413241505::1642744808::1700416645::1::::<><>::
+9 punch.png::CompressedTexture2D::6597613328992766304::1642807214::1700416645::1::::<><>::
+9 walk.png::CompressedTexture2D::5314318400723870241::1642806858::1700416645::1::::<><>::
+10 idle.png::CompressedTexture2D::269675864421881666::1642832498::1700416645::1::::<><>::
+10 punch.png::CompressedTexture2D::203168160628463062::1642832952::1700416645::1::::<><>::
+10 walk.png::CompressedTexture2D::7741073712749091653::1642832722::1700416645::1::::<><>::
+::res://art/tilesets/::1700420264
+dungeon_tiles.png::CompressedTexture2D::3522388161955605197::1700420264::1700420265::1::::<><>::
+::res://scenes/::1700420157
+scn_level_test.tscn::PackedScene::7397367472204211439::1700420157::0::1::::<><>::uid://xprph6oy24e1::::res://scenes/objects/player.tscn
+::res://scenes/objects/::1700420168
+player.tscn::PackedScene::1646368461992895598::1700420168::0::1::::<><>::uid://dr7cmsqva6fk4::::res://art/characters/spritesheets/1 walk.png<>res://scripts/player.gd<>uid://47dkogg6sh7h::::res://art/characters/spritesheets/1 idle.png
+::res://scripts/::1700420108
+player.gd::GDScript::-1::1700420108::0::1::::<>CharacterBody2D<>::
