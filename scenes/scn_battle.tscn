@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://drsnqpwx0o8pq"]
+
+[ext_resource type="Shader" path="res://shaders/scn_transition.gdshader" id="1_ctmci"]
+[ext_resource type="Texture2D" uid="uid://c00x6gueg0bu2" path="res://art/bg2.png" id="2_30obm"]
+
+[sub_resource type="Gradient" id="Gradient_agj8e"]
+offsets = PackedFloat32Array(0, 0.319066, 0.669261, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ailat"]
+gradient = SubResource("Gradient_agj8e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04ddd"]
+shader = ExtResource("1_ctmci")
+shader_parameter/screen_height = 100.0
+shader_parameter/amplitude = 0.135
+shader_parameter/frequency = 2.09
+shader_parameter/speed = 1.0
+shader_parameter/amplitude_vertical = 0.44
+shader_parameter/frequency_vertical = 2.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0.2, 0.4)
+shader_parameter/scrolling_speed = 1.235
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette_speed = 0.3
+shader_parameter/palette = SubResource("GradientTexture1D_ailat")
+
+[node name="scn_battle" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_04ddd")
+anchors_preset = -1
+anchor_left = -0.171
+offset_right = 1283.0
+offset_bottom = 811.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_30obm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 34.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.509804)

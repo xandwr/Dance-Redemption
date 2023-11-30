@@ -1,6 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1700420259
-::res://art/::1700420259
+::res://::1701312108
+bg1.png::CompressedTexture2D::8564402503276448867::1701312108::1701312108::1::::<><>::
+::res://art/::1701312126
+bg2.png::CompressedTexture2D::6580624098860119919::1701312126::1701312127::1::::<><>::
 ::res://art/characters/::1700416644
 ::res://art/characters/spritesheets/::1700416648
 1 idle.png::CompressedTexture2D::2101737307460684451::1641714554::1700416648::1::::<><>::
@@ -33,11 +35,28 @@ ea4bc82a6ad023ab7ee23ee620429895
 10 idle.png::CompressedTexture2D::269675864421881666::1642832498::1700416645::1::::<><>::
 10 punch.png::CompressedTexture2D::203168160628463062::1642832952::1700416645::1::::<><>::
 10 walk.png::CompressedTexture2D::7741073712749091653::1642832722::1700416645::1::::<><>::
-::res://art/tilesets/::1700420264
+::res://art/tilesets/::1701310315
 dungeon_tiles.png::CompressedTexture2D::3522388161955605197::1700420264::1700420265::1::::<><>::
-::res://scenes/::1700420157
-scn_level_test.tscn::PackedScene::7397367472204211439::1700420157::0::1::::<><>::uid://xprph6oy24e1::::res://scenes/objects/player.tscn
-::res://scenes/objects/::1700420168
-player.tscn::PackedScene::1646368461992895598::1700420168::0::1::::<><>::uid://dr7cmsqva6fk4::::res://art/characters/spritesheets/1 walk.png<>res://scripts/player.gd<>uid://47dkogg6sh7h::::res://art/characters/spritesheets/1 idle.png
-::res://scripts/::1700420108
-player.gd::GDScript::-1::1700420108::0::1::::<>CharacterBody2D<>::
+dungeon_tiles.tres::TileSet::4859116987469897732::1701310315::0::1::::<><>::uid://bqgjhop84hy5j::::res://art/tilesets/dungeon_tiles.png
+::res://scenes/::1701311744
+scn_change.tscn::PackedScene::3705151825991042132::1701311743::0::1::::<><>::uid://ddnltddem4y2r::::res://scenes/scn_level_1.tscn
+scn_level_1.tscn::PackedScene::7397367472204211439::1701311744::0::1::::<><>::res://scripts/world.gd<>uid://cbh17gtkdptps::::res://art/tilesets/dungeon_tiles.tres<>uid://xprph6oy24e1::::res://scenes/objects/player.tscn<>uid://dkllbej2sc0t3::::res://scenes/objects/torch.tscn<>uid://ccvngfpged05s::::res://scenes/objects/enemy.tscn<>uid://chykbvb8nnx2x::::res://art/characters/spritesheets/9 walk.png<>uid://duoun2htyxxk0::::res://art/characters/spritesheets/9 idle.png<>uid://bb6pn8q5yjt7q::::res://sounds/door_enter.wav<>uid://bp4wcgts5swcq::::res://sounds/door_exit.wav
+scn_level_2.tscn::PackedScene::8459324862408378817::1701311742::0::1::::<><>::res://scripts/world.gd<>uid://cbh17gtkdptps::::res://art/tilesets/dungeon_tiles.tres<>uid://xprph6oy24e1::::res://scenes/objects/player.tscn<>uid://bb6pn8q5yjt7q::::res://sounds/door_enter.wav<>uid://bp4wcgts5swcq::::res://sounds/door_exit.wav
+scn_level_3.tscn::PackedScene::375598807464110962::1701311743::0::1::::<><>::res://scripts/world.gd<>uid://cbh17gtkdptps::::res://art/tilesets/dungeon_tiles.tres<>uid://xprph6oy24e1::::res://scenes/objects/player.tscn<>uid://bb6pn8q5yjt7q::::res://sounds/door_enter.wav<>uid://bp4wcgts5swcq::::res://sounds/door_exit.wav
+scn_transition.tscn::PackedScene::4390613470121282118::1701311743::0::1::::<><>::res://scripts/scene_transition.gd<>uid://bb6pn8q5yjt7q::::res://sounds/door_enter.wav<>uid://bp4wcgts5swcq::::res://sounds/door_exit.wav<>res://shaders/scn_transition.gdshader<>uid://c7skposmlyrvo::::res://art/bg1.png
+::res://scenes/objects/::1701311745
+enemy.tscn::PackedScene::4957371309233838282::1701308976::0::1::::<><>::res://scripts/enemy.gd<>uid://bvlsbb5o5bgel::::res://art/characters/spritesheets/3 walk.png<>uid://djoqdedpfq8tr::::res://art/characters/spritesheets/3 idle.png
+player.tscn::PackedScene::1646368461992895598::1701311745::0::1::::<><>::uid://dr7cmsqva6fk4::::res://art/characters/spritesheets/1 walk.png<>res://scripts/player.gd<>uid://47dkogg6sh7h::::res://art/characters/spritesheets/1 idle.png<>res://scripts/interaction.gd
+torch.tscn::PackedScene::7884528540716179542::1701286174::0::1::::<><>::uid://bqgjhop84hy5j::::res://art/tilesets/dungeon_tiles.png<>res://scripts/torch.gd
+::res://scripts/::1701310385
+enemy.gd::GDScript::-1::1701293115::0::1::::<>CharacterBody2D<>::
+interaction.gd::GDScript::-1::1700428654::0::1::::<>Area2D<>::
+player.gd::GDScript::-1::1701306552::0::1::::<>CharacterBody2D<>::
+scene_transition.gd::GDScript::-1::1701310384::0::1::::<>CanvasLayer<>::
+torch.gd::GDScript::-1::1701300037::0::1::::<>StaticBody2D<>::
+world.gd::GDScript::-1::1701309877::0::1::::<>Node2D<>::
+::res://shaders/::1701311745
+scn_transition.gdshader::Shader::-1::1701311745::0::1::::<><>::
+::res://sounds/::1701304679
+door_enter.wav::AudioStreamWAV::2521540967302184100::1701304362::1701304674::1::::<><>::
+door_exit.wav::AudioStreamWAV::3500459983910037788::1701304678::1701304679::1::::<><>::
