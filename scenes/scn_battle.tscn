@@ -1,7 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://drsnqpwx0o8pq"]
+[gd_scene load_steps=14 format=3 uid="uid://drsnqpwx0o8pq"]
 
 [ext_resource type="Shader" path="res://shaders/scn_transition.gdshader" id="1_ctmci"]
-[ext_resource type="Texture2D" uid="uid://c00x6gueg0bu2" path="res://art/bg2.png" id="2_30obm"]
+[ext_resource type="Script" path="res://scenes/scn_battle.gd" id="1_yb38x"]
+[ext_resource type="Texture2D" uid="uid://bncgdbivovr27" path="res://art/bg3.png" id="3_ud58y"]
+[ext_resource type="PackedScene" uid="uid://bm3fja65el4ds" path="res://scenes/scn_conductor.tscn" id="4_l1p0h"]
+[ext_resource type="PackedScene" uid="uid://bsdad8u1d6j76" path="res://scenes/objects/arrow.tscn" id="5_3xqlj"]
+[ext_resource type="AudioStream" uid="uid://b0c57hn4riw6w" path="res://sounds/test_battlemus.mp3" id="5_iaet6"]
+
+[sub_resource type="Gradient" id="Gradient_spt3p"]
+offsets = PackedFloat32Array(0, 0.33463, 0.66537, 1)
+colors = PackedColorArray(0.431373, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0.431373, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tgfwc"]
+gradient = SubResource("Gradient_spt3p")
+width = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ba0r0"]
+shader = ExtResource("1_ctmci")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.075
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.0
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette_speed = 0.1
+shader_parameter/palette = SubResource("GradientTexture1D_tgfwc")
 
 [sub_resource type="Gradient" id="Gradient_agj8e"]
 offsets = PackedFloat32Array(0, 0.319066, 0.669261, 1)
@@ -12,20 +39,34 @@ gradient = SubResource("Gradient_agj8e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_04ddd"]
 shader = ExtResource("1_ctmci")
-shader_parameter/screen_height = 100.0
-shader_parameter/amplitude = 0.135
-shader_parameter/frequency = 2.09
-shader_parameter/speed = 1.0
-shader_parameter/amplitude_vertical = 0.44
-shader_parameter/frequency_vertical = 2.0
+shader_parameter/screen_height = 240.0
+shader_parameter/amplitude = 0.01
+shader_parameter/frequency = 6.0
+shader_parameter/speed = 0.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
 shader_parameter/speed_vertical = 0.0
-shader_parameter/scroll_direction = Vector2(0.2, 0.4)
-shader_parameter/scrolling_speed = 1.235
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/scrolling_speed = 0.05
 shader_parameter/enable_palette_cycling = true
-shader_parameter/palette_speed = 0.3
+shader_parameter/palette_speed = 0.1
 shader_parameter/palette = SubResource("GradientTexture1D_ailat")
 
+[sub_resource type="LabelSettings" id="LabelSettings_joqh2"]
+font_size = 32
+
 [node name="scn_battle" type="Node2D"]
+script = ExtResource("1_yb38x")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ba0r0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(1.1, 1.1)
+color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -38,17 +79,113 @@ offset_bottom = 811.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_30obm")
+texture = ExtResource("3_ud58y")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 34.0
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.509804)
+offset_right = 1280.0
+offset_bottom = 720.0
+scale = Vector2(1.1, 1.1)
+color = Color(0, 0, 0, 0.639216)
+
+[node name="Conductor" parent="." instance=ExtResource("4_l1p0h")]
+stream = ExtResource("5_iaet6")
+bpm = 140.0
+
+[node name="Combo" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 136.0
+offset_bottom = 96.0
+text = "Combo: "
+label_settings = SubResource("LabelSettings_joqh2")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 8.0
+offset_right = 136.0
+offset_bottom = 48.0
+text = "Score:"
+label_settings = SubResource("LabelSettings_joqh2")
+
+[node name="LaneContainer" type="Node2D" parent="."]
+
+[node name="ColorRect6" type="ColorRect" parent="LaneContainer"]
+offset_left = 400.0
+offset_top = -7.0
+offset_right = 882.0
+offset_bottom = 814.0
+color = Color(0.0784314, 0.180392, 0.301961, 0.466667)
+
+[node name="ColorRect" type="ColorRect" parent="LaneContainer"]
+offset_left = 399.0
+offset_top = -39.0
+offset_right = 404.0
+offset_bottom = 810.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="LaneContainer"]
+offset_left = 521.0
+offset_top = -40.0
+offset_right = 526.0
+offset_bottom = 809.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="LaneContainer"]
+offset_left = 640.0
+offset_top = -43.0
+offset_right = 645.0
+offset_bottom = 806.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="LaneContainer"]
+offset_left = 758.0
+offset_top = -44.0
+offset_right = 763.0
+offset_bottom = 805.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="LaneContainer"]
+offset_left = 879.0
+offset_top = -43.0
+offset_right = 884.0
+offset_bottom = 806.0
+color = Color(0, 0, 0, 1)
+
+[node name="ArrowContainer" type="Node2D" parent="."]
+position = Vector2(642, 580)
+scale = Vector2(3, 3)
+
+[node name="ArrowLeft" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
+position = Vector2(-60, 0)
+input = "left"
+
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowLeft" index="4"]
+rotation = -1.5708
+
+[node name="ArrowDown" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
+position = Vector2(-20, 0)
+input = "down"
+
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowDown" index="4"]
+rotation = 3.14159
+
+[node name="ArrowUp" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
+position = Vector2(20, 0)
+input = "up"
+
+[node name="ArrowRight" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
+position = Vector2(60, 0)
+input = "right"
+
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowRight" index="4"]
+rotation = 1.5708
+
+[connection signal="beat" from="Conductor" to="." method="_on_conductor_beat"]
+[connection signal="measure" from="Conductor" to="." method="_on_conductor_measure"]
+
+[editable path="ArrowContainer/ArrowLeft"]
+[editable path="ArrowContainer/ArrowDown"]
+[editable path="ArrowContainer/ArrowUp"]
+[editable path="ArrowContainer/ArrowRight"]

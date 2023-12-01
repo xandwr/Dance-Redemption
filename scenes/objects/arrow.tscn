@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsdad8u1d6j76"]
+
+[ext_resource type="Texture2D" uid="uid://bq34jmew3xwx5" path="res://art/arrow_sprite_prototype.png" id="1_bw1kt"]
+[ext_resource type="Script" path="res://scenes/objects/arrow.gd" id="2_b0opr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fq6a"]
+atlas = ExtResource("1_bw1kt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ttw"]
+atlas = ExtResource("1_bw1kt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdcem"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fq6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3ttw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4v3i"]
+size = Vector2(8, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgqvw"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3idqn"]
+size = Vector2(14, 34)
+
+[node name="ArrowButton" type="Node2D"]
+script = ExtResource("2_b0opr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mdcem")
+
+[node name="PerfectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfectArea"]
+shape = SubResource("RectangleShape2D_h4v3i")
+
+[node name="GreatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
+shape = SubResource("RectangleShape2D_fgqvw")
+
+[node name="OkayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+shape = SubResource("RectangleShape2D_3idqn")
+
+[node name="PushTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="area_entered" from="PerfectArea" to="." method="_on_perfect_area_area_entered"]
+[connection signal="area_exited" from="PerfectArea" to="." method="_on_perfect_area_area_exited"]
+[connection signal="area_entered" from="GreatArea" to="." method="_on_great_area_area_entered"]
+[connection signal="area_exited" from="GreatArea" to="." method="_on_great_area_area_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_okay_area_area_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_okay_area_area_exited"]

@@ -543,7 +543,6 @@ shape = SubResource("CircleShape2D_osg6l")
 debug_color = Color(0, 0.407843, 0.478431, 0.419608)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="."]
 wait_time = 0.1
