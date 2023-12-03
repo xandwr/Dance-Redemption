@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drsnqpwx0o8pq"]
+[gd_scene load_steps=15 format=3 uid="uid://drsnqpwx0o8pq"]
 
 [ext_resource type="Shader" path="res://shaders/scn_transition.gdshader" id="1_ctmci"]
 [ext_resource type="Script" path="res://scenes/scn_battle.gd" id="1_yb38x"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bm3fja65el4ds" path="res://scenes/scn_conductor.tscn" id="4_l1p0h"]
 [ext_resource type="PackedScene" uid="uid://bsdad8u1d6j76" path="res://scenes/objects/arrow.tscn" id="5_3xqlj"]
 [ext_resource type="AudioStream" uid="uid://b0c57hn4riw6w" path="res://sounds/test_battlemus.mp3" id="5_iaet6"]
+[ext_resource type="PackedScene" uid="uid://c4qwmhded4ouc" path="res://scenes/PauseMenu.tscn" id="7_nsgk5"]
 
 [sub_resource type="Gradient" id="Gradient_spt3p"]
 offsets = PackedFloat32Array(0, 0.33463, 0.66537, 1)
@@ -161,14 +162,14 @@ scale = Vector2(3, 3)
 position = Vector2(-60, 0)
 input = "left"
 
-[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowLeft" index="4"]
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowLeft" index="0"]
 rotation = -1.5708
 
 [node name="ArrowDown" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
 position = Vector2(-20, 0)
 input = "down"
 
-[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowDown" index="4"]
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowDown" index="0"]
 rotation = 3.14159
 
 [node name="ArrowUp" parent="ArrowContainer" instance=ExtResource("5_3xqlj")]
@@ -179,8 +180,13 @@ input = "up"
 position = Vector2(60, 0)
 input = "right"
 
-[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowRight" index="4"]
+[node name="AnimatedSprite2D" parent="ArrowContainer/ArrowRight" index="0"]
 rotation = 1.5708
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_nsgk5")]
+visible = false
 
 [connection signal="beat" from="Conductor" to="." method="_on_conductor_beat"]
 [connection signal="measure" from="Conductor" to="." method="_on_conductor_measure"]

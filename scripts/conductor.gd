@@ -28,7 +28,6 @@ func _process(_delta):
 		song_position -= AudioServer.get_output_latency()
 		song_position_in_beats = int(floor(song_position / sec_per_beat)) + beats_before_start
 		_report_beat()
-		print("Current measure: " + str(cur_measure) + ", Current beat: " + str(last_reported_beat))
 
 
 func _report_beat():

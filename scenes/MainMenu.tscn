@@ -1,0 +1,161 @@
+[gd_scene load_steps=18 format=3 uid="uid://duuamb53kbysp"]
+
+[ext_resource type="Texture2D" uid="uid://kbwq4m42qshc" path="res://art/ui/playbutton.png" id="1_thygm"]
+[ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_u2i3g"]
+[ext_resource type="PackedScene" uid="uid://bs12krqsyilqi" path="res://scenes/scn_change.tscn" id="2_lr57c"]
+[ext_resource type="Texture2D" uid="uid://dwoat8mc37dxa" path="res://art/ui/quitbutton.png" id="2_of20y"]
+[ext_resource type="Texture2D" uid="uid://c00x6gueg0bu2" path="res://art/bg2.png" id="3_qdfxn"]
+
+[sub_resource type="Shader" id="Shader_m5u4p"]
+code = "/* 
+Earthbound battle backgrounds shader with scrolling effect and palette cycling like in the original game.
+@retr0_dev
+	
+Apply the shader to a TextureRect or a Sprite. Use a texture with some shapes in a transparent background for best results.
+You can then use a ColorRect or another method to paint the background.
+You can use the shader on multiple TextureRects and obtain a double-buffer effect tweaking the values for each one, remember to Make Unique the shader material.
+*/
+shader_type canvas_item;
+
+uniform float screen_height = 640.0;
+uniform float amplitude = 0.075;
+uniform float frequency = 10.0;
+uniform float speed = 2.0;
+uniform float amplitude_vertical = 0.0;
+uniform float frequency_vertical = 0.0;
+uniform float speed_vertical = 0.0;
+uniform vec2 scroll_direction = vec2(0.0, 0.0);
+uniform float scrolling_speed = 0.08;
+uniform bool enable_palette_cycling = false;
+uniform sampler2D palette;
+uniform float palette_speed = 0.1;
+
+void fragment()
+{
+	float diff_x = amplitude * sin((frequency * UV.y) + (speed * TIME));
+	float diff_y = amplitude_vertical * sin((frequency_vertical * UV.y)  + (speed_vertical * TIME));
+	vec2 scroll = scroll_direction * TIME * scrolling_speed;
+	vec4 tex = texture(TEXTURE, vec2(UV.x + diff_x, UV.y + diff_y) + scroll);
+	float palette_swap = mod(tex.r - TIME * palette_speed, 1.0);
+	
+	if (enable_palette_cycling)
+	{
+		COLOR = vec4(texture(palette, vec2(palette_swap, 0)).rgb, tex.a);
+	}
+	else COLOR = tex;
+	COLOR = mix(vec4(0.0), COLOR, float(int(UV.y * screen_height) % 2));
+}"
+
+[sub_resource type="Gradient" id="Gradient_bwh1g"]
+offsets = PackedFloat32Array(0, 0.280156, 0.766537, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i0ik7"]
+gradient = SubResource("Gradient_bwh1g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlf25"]
+shader = SubResource("Shader_m5u4p")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.5
+shader_parameter/frequency = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/amplitude_vertical = 0.5
+shader_parameter/frequency_vertical = 2.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/scrolling_speed = 0.5
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette_speed = 0.1
+shader_parameter/palette = SubResource("GradientTexture2D_i0ik7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkctm"]
+texture = ExtResource("1_thygm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0y57q"]
+texture = ExtResource("1_thygm")
+modulate_color = Color(0.709804, 0.984314, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vjvu"]
+texture = ExtResource("1_thygm")
+modulate_color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afkyb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rg38d"]
+texture = ExtResource("2_of20y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_da1h4"]
+texture = ExtResource("2_of20y")
+modulate_color = Color(0.709804, 0.984314, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jrqt2"]
+texture = ExtResource("2_of20y")
+modulate_color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enpmw"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_u2i3g")
+mainScene = ExtResource("2_lr57c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_tlf25")
+offset_right = 1280.0
+offset_bottom = 811.0
+scale = Vector2(1, 0.888)
+texture = ExtResource("3_qdfxn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.670588)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Dance Redemption"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 525
+theme_override_constants/margin_right = 525
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_vkctm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0y57q")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1vjvu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_afkyb")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 525
+theme_override_constants/margin_right = 525
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_rg38d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_da1h4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jrqt2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_enpmw")
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/Quit" to="." method="_on_quit_button_up"]

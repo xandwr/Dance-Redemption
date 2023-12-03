@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4qwmhded4ouc"]
+
+[ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="1_n3y0r"]
+[ext_resource type="Texture2D" uid="uid://kbwq4m42qshc" path="res://art/ui/playbutton.png" id="2_exsd7"]
+[ext_resource type="Texture2D" uid="uid://dwoat8mc37dxa" path="res://art/ui/quitbutton.png" id="3_irxys"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa36x"]
+texture = ExtResource("2_exsd7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ngn04"]
+texture = ExtResource("2_exsd7")
+modulate_color = Color(0.709804, 0.984314, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v38bj"]
+texture = ExtResource("2_exsd7")
+modulate_color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i33gb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x8g5r"]
+texture = ExtResource("3_irxys")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ok78m"]
+texture = ExtResource("3_irxys")
+modulate_color = Color(0.709804, 0.984314, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qlu3"]
+texture = ExtResource("3_irxys")
+modulate_color = Color(0.639216, 0.639216, 0.639216, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bynv"]
+
+[node name="PauseMenu" type="Node2D"]
+process_mode = 3
+visible = false
+script = ExtResource("1_n3y0r")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Dance Redemption"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 0
+
+[node name="Play" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_oa36x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ngn04")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v38bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i33gb")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 0
+
+[node name="Quit" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_x8g5r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ok78m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5qlu3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3bynv")
+
+[connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/Quit" to="." method="_on_quit_pressed"]
