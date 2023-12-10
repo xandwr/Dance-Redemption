@@ -24,11 +24,12 @@ func _ready():
 	main_menu.show()
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master_volume_slider.value)
-	play_audio("res://music/Background1.mp3")
+	play_audio("res://.godot/imported/Background1.mp3-b5f27474bd57f8a85773629f4d9379c7.mp3str")
 
 
 func _process(_delta):	
 	if Global.player:
+		purified_souls_label.text = "Souls Purified: " + str(Global.purified_souls)
 		if !Global.battle_in_progress:
 			camera.position = Vector2(
 				Global.player.position.x - (get_viewport_rect().size.x / 2) / (camera.zoom.x), 
@@ -39,7 +40,6 @@ func _process(_delta):
 				hud.show()
 		else:
 			await animation_player.animation_finished
-			purified_souls_label.text = "Souls Purified: " + str(Global.purified_souls)
 			hud.hide()
 			camera.position = Vector2(0,0)
 			camera.zoom = Vector2(1,1)
@@ -62,6 +62,7 @@ func _input(event):
 
 func play_audio(pathname: String):
 	var file = FileAccess.open(pathname, FileAccess.READ)
+	
 	if file:
 		var buffer = file.get_buffer(file.get_length())
 		var stream = AudioStreamMP3.new()
@@ -99,13 +100,14 @@ func load_level(level_name: String, unload_previous: bool):
 
 
 func _on_play_button_pressed():
+	Global.purified_souls = 0
 	for node in main_2d.get_children():
 		if node != main_2d.get_node("Camera2D"):
 			main_2d.remove_child(node)
 	load_level("level_1", true)
 	await animation_player.animation_finished
 	main_2d.add_child(Global.player)
-	play_audio("res://music/Background2.mp3")
+	play_audio("res://.godot/imported/Background2.mp3-aca9bffd037ccdf3e96fcc12973ad7c7.mp3str")
 
 
 func _on_options_button_pressed():
@@ -155,7 +157,7 @@ func _on_pause_menu_button_pressed():
 	Global.player_can_dance = false
 	Global.enemy_can_dance = false
 	get_tree().paused = false
-	play_audio("res://music/Background1.mp3")
+	play_audio("res://.godot/imported/Background1.mp3-b5f27474bd57f8a85773629f4d9379c7.mp3str")
 	hud.hide()
 	main_menu.show()
 
