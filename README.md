@@ -14,4 +14,4 @@ There are also some other basic mechanics, such as the simple interaction and di
 **Alex Pickering** - Game Idea, Primary Developer, Project Planning\
 **Robin Huppertz** - UI Designer, Storyboarding, Lore Developer\
 **Aly Foord** - Character Designer, Worldbuilding, Lore Creator, Figma Organizer\
-**Kaitlyn Littlejohn** - Sound Design, Primary Musician
+**Kaitlyn Littlejohn** - Sound & Music Design
