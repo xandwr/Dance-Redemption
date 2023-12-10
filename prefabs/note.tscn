@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6mkplqgyp33u"]
 
 [ext_resource type="Script" path="res://scripts/dance_battle/note.gd" id="1_uxp55"]
-[ext_resource type="Texture2D" uid="uid://yywg632lj0ub" path="res://art/note_sheet.png" id="2_3rntu"]
+[ext_resource type="Texture2D" uid="uid://yywg632lj0ub" path="res://Art/note_sheet.png" id="2_3rntu"]
 [ext_resource type="FontFile" uid="uid://b2v5qa4wapbfa" path="res://fonts/alagard.ttf" id="3_p15sc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t77c"]

@@ -97,7 +97,8 @@ func begin_battle(target: CharacterBody2D):
 	self.can_move = false
 	Global.current_enemy = self.duplicate()
 	Global.player_last_coords = target.position
-	Global.player.can_move = false;
+	Global.player.can_move = false
+	Global.player.battle_dir = Vector2(1, 0)
 	get_parent().get_parent().get_parent().load_level("level_battle", false)
 	await get_parent().get_parent().get_parent().animation_player.animation_finished
 	queue_free()

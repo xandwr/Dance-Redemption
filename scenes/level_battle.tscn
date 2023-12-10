@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0d2s6vso0ikd" path="res://prefabs/arrow.tscn" id="2_tl5vw"]
 [ext_resource type="AudioStream" uid="uid://b1x5kapgk768o" path="res://music/DanceBeat3.mp3" id="3_cirfs"]
 [ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="3_ml6bi"]
-[ext_resource type="Texture2D" uid="uid://ba81cymnbwoo1" path="res://art/spotlight.png" id="5_nusrj"]
+[ext_resource type="Texture2D" uid="uid://ba81cymnbwoo1" path="res://Art/spotlight.png" id="5_nusrj"]
 [ext_resource type="Shader" path="res://shaders/godrays.gdshader" id="6_xlc0g"]
 [ext_resource type="FontFile" uid="uid://b2v5qa4wapbfa" path="res://fonts/alagard.ttf" id="8_f4qao"]
 

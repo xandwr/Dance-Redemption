@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://0d2s6vso0ikd"]
 
 [ext_resource type="Script" path="res://scripts/dance_battle/arrow.gd" id="1_6gg0r"]
-[ext_resource type="Texture2D" uid="uid://il6oh2k6phev" path="res://art/arrow.png" id="1_nk6xm"]
-[ext_resource type="Texture2D" uid="uid://dlh1dtxh4eubb" path="res://art/arrow_focused.png" id="2_e0n8l"]
+[ext_resource type="Texture2D" uid="uid://il6oh2k6phev" path="res://Art/arrow.png" id="1_nk6xm"]
+[ext_resource type="Texture2D" uid="uid://dlh1dtxh4eubb" path="res://Art/arrow_focused.png" id="2_e0n8l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6ifl2"]
 animations = [{

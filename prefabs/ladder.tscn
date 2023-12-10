@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxdqma2vaoajf"]
 
 [ext_resource type="Script" path="res://prefabs/ladder.gd" id="1_4v8ee"]
-[ext_resource type="TileSet" uid="uid://cbh17gtkdptps" path="res://art/dungeon_tiles.tres" id="2_luo10"]
+[ext_resource type="TileSet" uid="uid://cbh17gtkdptps" path="res://Art/dungeon_tiles.tres" id="2_luo10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqnr5"]
 size = Vector2(14, 9)

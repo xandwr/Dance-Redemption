@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cm5fo5uvpnody"]
 
 [ext_resource type="Script" path="res://prefabs/chest.gd" id="1_h7bfs"]
-[ext_resource type="Texture2D" uid="uid://8eaono4nv8bw" path="res://art/dungeon_tiles.png" id="2_mvpin"]
+[ext_resource type="Texture2D" uid="uid://8eaono4nv8bw" path="res://Art/dungeon_tiles.png" id="2_mvpin"]
 [ext_resource type="AudioStream" uid="uid://b8bclgeqa6frq" path="res://sounds/chest_open.wav" id="3_2jocn"]
 [ext_resource type="AudioStream" uid="uid://b027xsha02ycs" path="res://sounds/chest_close.wav" id="4_m5wpr"]
 
