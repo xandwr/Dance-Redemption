@@ -1,0 +1,14 @@
+{
+	"locked_door": [
+		"The door is locked.",
+		"This is DEFINITELY not due to time constraints..."
+	],
+	"ladder": [
+		"This ladder looks too rickety to climb."
+	],
+	"chest": [
+		"The chest is empty, except for a single note that reads:",
+		"\"START STUDYING FOR YOUR FINALS IN TWO DAYS AND STOP WORKING ON A PROJECT FOR A CLASS THAT IS ALREADY FINISHED.\"",
+		"You wonder what it means."
+	]
+}

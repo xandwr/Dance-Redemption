@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://1u04bhmmn37l"]
+
+[ext_resource type="Script" path="res://prefabs/dialogue.gd" id="1_rogw1"]
+[ext_resource type="FontFile" uid="uid://b2v5qa4wapbfa" path="res://fonts/alagard.ttf" id="2_t74di"]
+[ext_resource type="AudioStream" uid="uid://dkt1xce27jkju" path="res://sounds/letter2.wav" id="3_n3gkn"]
+
+[node name="dialogue" type="CanvasLayer"]
+script = ExtResource("1_rogw1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 475.0
+offset_right = -140.0
+offset_bottom = -44.9994
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/ColorRect/MarginContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t74di")
+theme_override_font_sizes/font_size = 24
+text = "This is some test text!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_n3gkn")
+volume_db = -8.0
+
+[connection signal="timeout" from="TextTimer" to="." method="_on_text_timer_timeout"]
