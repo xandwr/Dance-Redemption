@@ -1,0 +1,334 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmw08f8gperjl"]
+
+[ext_resource type="Script" path="res://scenes/persistent_scene.gd" id="1_fk0h8"]
+[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="2_ffq7m"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="3_kql52"]
+[ext_resource type="FontFile" uid="uid://qw6oiaomi0i6" path="res://fonts/Daydream.ttf" id="4_0hd4h"]
+[ext_resource type="FontFile" uid="uid://b2v5qa4wapbfa" path="res://fonts/alagard.ttf" id="5_ksciq"]
+[ext_resource type="PackedScene" uid="uid://1u04bhmmn37l" path="res://prefabs/dialogue.tscn" id="6_bny62"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ibdy"]
+shader = ExtResource("3_kql52")
+shader_parameter/lod = 0.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4doi"]
+shader = ExtResource("2_ffq7m")
+shader_parameter/vignette_intensity = 0.25
+shader_parameter/vignette_opacity = 0.75
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_2hhc5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hy215"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/FadeRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iyqmx"]
+_data = {
+"RESET": SubResource("Animation_2hhc5"),
+"fade": SubResource("Animation_hy215")
+}
+
+[node name="PersistentScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fk0h8")
+
+[node name="Main2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Main2D"]
+anchor_mode = 0
+zoom = Vector2(3, 3)
+position_smoothing_speed = 8.0
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -854.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="PurifiedLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Souls Purified: 0"
+
+[node name="RootMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="Blur" type="ColorRect" parent="RootMenu"]
+material = SubResource("ShaderMaterial_1ibdy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Vignette" type="ColorRect" parent="RootMenu"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_y4doi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="RootMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="MenuContainer" type="MarginContainer" parent="RootMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 48.0
+offset_right = -380.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="RootMenu/MenuContainer"]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.901961)
+
+[node name="MainMenu" type="MarginContainer" parent="RootMenu/MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootMenu/MenuContainer/MainMenu"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleContainer" type="MarginContainer" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 25
+
+[node name="TitleLabel" type="Label" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0hd4h")
+theme_override_font_sizes/font_size = 36
+text = "Dance Redemption"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Options
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 349
+theme_override_constants/margin_right = 0
+
+[node name="QuitButton" type="Button" parent="RootMenu/MenuContainer/MainMenu/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Options" type="MarginContainer" parent="RootMenu/MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootMenu/MenuContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleContainer" type="MarginContainer" parent="RootMenu/MenuContainer/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TitleLabel" type="Label" parent="RootMenu/MenuContainer/Options/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0hd4h")
+theme_override_font_sizes/font_size = 36
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SliderContainer" type="MarginContainer" parent="RootMenu/MenuContainer/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootMenu/MenuContainer/Options/VBoxContainer/SliderContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RootMenu/MenuContainer/Options/VBoxContainer/SliderContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 16
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="RootMenu/MenuContainer/Options/VBoxContainer/SliderContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -72.0
+max_value = 6.0
+rounded = true
+
+[node name="ButtonContainer" type="MarginContainer" parent="RootMenu/MenuContainer/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 420
+
+[node name="BackButton" type="Button" parent="RootMenu/MenuContainer/Options/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="Pause" type="MarginContainer" parent="RootMenu/MenuContainer"]
+process_mode = 2
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootMenu/MenuContainer/Pause"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleContainer" type="MarginContainer" parent="RootMenu/MenuContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TitleLabel" type="Label" parent="RootMenu/MenuContainer/Pause/VBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_0hd4h")
+theme_override_font_sizes/font_size = 36
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseBackButton" type="Button" parent="RootMenu/MenuContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 28
+text = "Resume"
+
+[node name="PauseOptionsButton" type="Button" parent="RootMenu/MenuContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 28
+text = "Options"
+
+[node name="ButtonContainer" type="MarginContainer" parent="RootMenu/MenuContainer/Pause/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 345
+
+[node name="PauseMenuButton" type="Button" parent="RootMenu/MenuContainer/Pause/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ksciq")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iyqmx")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="Dialogue" parent="." instance=ExtResource("6_bny62")]
+visible = false
+
+[connection signal="pressed" from="RootMenu/MenuContainer/MainMenu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/MainMenu/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/MainMenu/VBoxContainer/MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="RootMenu/MenuContainer/Options/VBoxContainer/SliderContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/Options/VBoxContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/Pause/VBoxContainer/PauseBackButton" to="." method="_on_pause_back_button_pressed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/Pause/VBoxContainer/PauseOptionsButton" to="." method="_on_pause_options_button_pressed"]
+[connection signal="pressed" from="RootMenu/MenuContainer/Pause/VBoxContainer/ButtonContainer/PauseMenuButton" to="." method="_on_pause_menu_button_pressed"]

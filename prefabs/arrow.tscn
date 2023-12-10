@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://0d2s6vso0ikd"]
+
+[ext_resource type="Script" path="res://scripts/dance_battle/arrow.gd" id="1_6gg0r"]
+[ext_resource type="Texture2D" uid="uid://il6oh2k6phev" path="res://art/arrow.png" id="1_nk6xm"]
+[ext_resource type="Texture2D" uid="uid://dlh1dtxh4eubb" path="res://art/arrow_focused.png" id="2_e0n8l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ifl2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nk6xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e0n8l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17qcd"]
+size = Vector2(40, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xkvq"]
+size = Vector2(40, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttuvc"]
+size = Vector2(40, 136)
+
+[node name="ArrowButton" type="Node2D"]
+script = ExtResource("1_6gg0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_6ifl2")
+
+[node name="PerfectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfectArea"]
+shape = SubResource("RectangleShape2D_17qcd")
+debug_color = Color(0, 0.607843, 0.654902, 0.419608)
+
+[node name="GreatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
+shape = SubResource("RectangleShape2D_3xkvq")
+debug_color = Color(0.0784314, 0.54902, 0, 0.419608)
+
+[node name="OkayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+shape = SubResource("RectangleShape2D_ttuvc")
+debug_color = Color(0.596078, 0.541176, 0.145098, 0.419608)
+
+[connection signal="area_entered" from="PerfectArea" to="." method="_on_perfect_area_area_entered"]
+[connection signal="area_exited" from="PerfectArea" to="." method="_on_perfect_area_area_exited"]
+[connection signal="area_entered" from="GreatArea" to="." method="_on_great_area_area_entered"]
+[connection signal="area_exited" from="GreatArea" to="." method="_on_great_area_area_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_okay_area_area_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_okay_area_area_exited"]

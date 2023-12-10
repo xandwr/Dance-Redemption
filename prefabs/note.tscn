@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6mkplqgyp33u"]
+
+[ext_resource type="Script" path="res://scripts/dance_battle/note.gd" id="1_uxp55"]
+[ext_resource type="Texture2D" uid="uid://yywg632lj0ub" path="res://art/note_sheet.png" id="2_3rntu"]
+[ext_resource type="FontFile" uid="uid://b2v5qa4wapbfa" path="res://fonts/alagard.ttf" id="3_p15sc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t77c"]
+atlas = ExtResource("2_3rntu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_waqhf"]
+atlas = ExtResource("2_3rntu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31h0m"]
+atlas = ExtResource("2_3rntu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r57b6"]
+atlas = ExtResource("2_3rntu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dehqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t77c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_waqhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31h0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r57b6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s78rq"]
+size = Vector2(16, 16)
+
+[node name="Note" type="Area2D" groups=["note"]]
+script = ExtResource("1_uxp55")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_dehqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s78rq")
+
+[node name="HitLabelContainer" type="Node2D" parent="."]
+
+[node name="HitLabel" type="Label" parent="HitLabelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -8.5
+offset_right = 19.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_p15sc")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoteTimer" type="Timer" parent="."]
+
+[node name="DeleteTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="NoteTimer" to="." method="_on_note_timer_timeout"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]
