@@ -17,7 +17,7 @@ Working menu system:
 ![alt text](https://github.com/a-pick/Dance-Redemption/blob/main/demo_gifs/demo3.gif "Menu demo")
 
 ## Credits
-**Alex Pickering** - Game Idea, Primary Developer, Project Planning\
-**Robin Huppertz** - UI Designer, Storyboarding, Lore Developer\
-**Aly Foord** - Character Designer, Worldbuilding, Lore Creator, Figma Organizer\
-**Kaitlyn Littlejohn** - Sound & Music Design
+**Alex** - Game Idea, Primary Developer, Project Planning\
+**Robin** - UI Designer, Storyboarding, Lore Developer\
+**Aly** - Character Designer, Worldbuilding, Lore Creator, Figma Organizer\
+**Kaitlyn** - Sound & Music Design
